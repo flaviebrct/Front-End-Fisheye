@@ -1,14 +1,14 @@
-class PhotographerCard {
+export class PhotographerCard {
   constructor(photographer) {
     this._photographer = photographer;
   }
 
-  createPhotographerCard() {
-    const $article = document.createElement('article')
-    $article.classList.add('photographer-card-wrapper')
+  render() {
+    const $article = document.createElement("article");
+    $article.classList.add("photographer-card-wrapper");
 
     const photographerCard = `
-      <a href="/photographer.html" aria-label="Lien cliquable vers le profile de ${this._photographer.name}">
+      <a href="./photographer.html?id=${this._photographer.id}" aria-label="Lien vers le profil de ${this._photographer.name}">
         <img
           alt="Portrait de ${this._photographer.name}"
           src="${this._photographer.portrait}"

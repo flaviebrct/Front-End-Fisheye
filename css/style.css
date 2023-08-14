@@ -37,9 +37,8 @@ h1 {
 
 .photographer_section article h2 {
   color: #d3573c;
-  font-size: 36px;
+  font-size: calc(36rem / 16);
   margin: 0px;
-
   font-weight: 400;
   line-height: 47px;
   text-align: center;
@@ -66,21 +65,21 @@ h1 {
 }
 
 .photographer_section article .photographer-location {
-  font-size: 13px;
+  font-size: calc(16rem / 16);
   font-weight: 400;
   line-height: 17px;
   color: #901c1c;
 }
 
 .photographer_section article .photographer-tagline {
-  font-size: 10px;
+  font-size: calc(13rem / 16);
   font-weight: 400;
   line-height: 13px;
   color: #000000;
 }
 
 .photographer_section article .photographer-price {
-  font-size: 9px;
+  font-size: calc(12rem / 16);
   font-weight: 400;
   line-height: 12px;
   color: #757575;

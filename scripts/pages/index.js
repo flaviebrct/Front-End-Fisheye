@@ -1,13 +1,18 @@
+import { PhotographerApi } from "../api/PhotographerApi.js"
+import { Photographer as PhotographerConstructor }  from "../models/PhotographerConstructor.js"
+import { PhotographerCard } from "../templates/PhotographerCard.js";
+
+
 class App {
   constructor() {
     this.$photographersWrapper = document.querySelector(
       ".photographer_section"
     );
-    this.protographersApi = new PhotographerApi("data/photographers.json");
+    this.photographersApi = new PhotographerApi("data/photographers.json");
   }
 
   async init() {
-    const photographersData = await this.protographersApi.getPhotographers();
+    const photographersData = await this.photographersApi.getPhotographers();
 
     console.log(photographersData);
 
@@ -16,7 +21,7 @@ class App {
       .forEach((photographer) => {
         const Template = new PhotographerCard(photographer);
         this.$photographersWrapper.appendChild(
-          Template.createPhotographerCard()
+          Template.render()
         );
       });
   }
