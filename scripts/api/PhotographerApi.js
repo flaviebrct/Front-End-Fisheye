@@ -15,4 +15,3 @@ export class PhotographerApi extends Api {
       .catch((err) => console.log("an error occurs", err));
   }
 }
-
