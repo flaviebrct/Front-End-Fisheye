@@ -20,28 +20,42 @@
 
     </div>
   </main>
-  <!-- <div id="contact_modal">
+  <div id="contact_modal">
     <div class="modal">
-      <header>
-        <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" alt="Bouton de fermeture de la modale" onclick="closeModal()" />
+      <header id="modal-header">
+        <button id="close-button">
+          <img src="assets/icons/close.svg" alt="Bouton de fermeture de la modale"/>
+        </button>
       </header>
       <form>
         <div>
           <label for="name">Prénom</label>
-          <input type="text" id="name" />
+          <input type="text" id="name" aria-label="Ecrivez ici un prénom" />
+          <span class="name-error error-message">Veuillez entrer 2 caractères ou plus pour le champ du prénom.</span>
+
+          <label for="surname">Nom</label>
+          <input type="text" id="surname" aria-label="Ecrivez ici un nom de famille" />
+          <span class="surname-error error-message">Veuillez entrer 2 caractères ou plus pour le champ du nom.</span>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" aria-label="Ecrivez ici une email" />
+          <span class="email-error error-message">Veuillez entrer une adresse email valide.</span>
+
+          <label for="message">Votre message</label>
+          <textarea id="message" aria-label="Ecrivez ici un message pour expliquer votre projet au photographe"></textarea>
+          <span class="message-error error-message">Veuillez entrer un message décrivant votre projet.</span>
         </div>
         <button class="contact_button">Envoyer</button>
       </form>
     </div>
-  </div> -->
+  </div>
 
   <!-- Entry point -->
   <script type="module" src="/scripts/pages/photographer.js"></script>
 
   <!-- Form -->
   <script src="/scripts/utils/contactForm.js"></script>
-  
+
   <script src="https://kit.fontawesome.com/8c2508aa93.js" crossorigin="anonymous"></script>
 
 </body>
