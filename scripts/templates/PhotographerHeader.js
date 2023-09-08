@@ -4,8 +4,6 @@ export class PhotographerHeader {
   }
 
   render() {
-    const $header = document.querySelector(".photograph-header");
-
     const photographerHeader = `
       <div class="photographer-profile">
         <h1>${this._photographer.name}</h1>
@@ -22,7 +20,6 @@ export class PhotographerHeader {
       />
     `;
 
-    $header.innerHTML = photographerHeader;
-    return $header;
+    return photographerHeader;
   }
 }

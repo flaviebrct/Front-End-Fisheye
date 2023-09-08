@@ -1,7 +1,6 @@
-import { PhotographerApi } from "../api/PhotographerApi.js"
+import { PhotographerApi } from "../api/PhotographerApi.js";
 import { PhotographerCard } from "../templates/PhotographerCard.js";
-import { Photographer as PhotographerConstructor }  from "../models/PhotographerConstructor.js"
-
+import { Photographer as PhotographerConstructor } from "../models/PhotographerConstructor.js";
 
 class App {
   constructor() {
@@ -14,15 +13,15 @@ class App {
   async init() {
     const photographersData = await this.photographersApi.getPhotographers();
 
+    // console.log(photographersData);
+    
     console.log(photographersData);
-
     photographersData
       .map((photographer) => new PhotographerConstructor(photographer))
       .forEach((photographer) => {
-        const Template = new PhotographerCard(photographer);
-        this.$photographersWrapper.appendChild(
-          Template.render()
-        );
+        const template = new PhotographerCard(photographer);
+        console.log(template.render());
+        this.$photographersWrapper.appendChild(template.render());
       });
   }
 }
