@@ -9,7 +9,7 @@
   <title>Fisheye - photographe </title>
 </head>
 
-<body>
+<body id="photographer-page">
   <header>
     <a href="index.html" aria-label="Lien vers la page d'accueil">
       <img src="assets/images/logo.png" class="logo" alt="Logo de Fisheye" />
@@ -20,32 +20,34 @@
 
     </div>
   </main>
-  <div id="contact_modal">
+  <div id="contact_modal" role="dialog">
+    <div class="background-modal"></div>
     <div class="modal">
       <header id="modal-header">
-        <button id="close-button">
-          <img src="assets/icons/close.svg" alt="Bouton de fermeture de la modale"/>
+        <button id="close-button" class="form-input" >
+          <img src="assets/icons/close.svg" alt="Bouton de fermeture de la modale" />
         </button>
       </header>
       <form>
         <div>
           <label for="name">Prénom</label>
-          <input type="text" id="name" aria-label="Ecrivez ici un prénom" />
+          <input type="text" id="name" class="form-input" aria-label="Ecrivez ici un prénom" />
           <span class="name-error error-message">Veuillez entrer 2 caractères ou plus pour le champ du prénom.</span>
 
           <label for="surname">Nom</label>
-          <input type="text" id="surname" aria-label="Ecrivez ici un nom de famille" />
+          <input type="text" id="surname" class="form-input" aria-label="Ecrivez ici un nom de famille" />
           <span class="surname-error error-message">Veuillez entrer 2 caractères ou plus pour le champ du nom.</span>
 
           <label for="email">Email</label>
-          <input type="email" id="email" aria-label="Ecrivez ici une email" />
+          <input type="email" id="email" class="form-input" aria-label="Ecrivez ici une email" />
           <span class="email-error error-message">Veuillez entrer une adresse email valide.</span>
 
           <label for="message">Votre message</label>
-          <textarea id="message" aria-label="Ecrivez ici un message pour expliquer votre projet au photographe"></textarea>
+          <textarea id="message" class="form-input"
+            aria-label="Ecrivez ici un message pour expliquer votre projet au photographe"></textarea>
           <span class="message-error error-message">Veuillez entrer un message décrivant votre projet.</span>
         </div>
-        <button class="contact_button">Envoyer</button>
+        <button class="contact_button form-input">Envoyer</button>
       </form>
     </div>
   </div>

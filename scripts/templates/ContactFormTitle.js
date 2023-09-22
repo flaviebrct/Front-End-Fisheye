@@ -4,8 +4,8 @@ export class ContactFormTitle {
   }
 
   render() {
-    const $title = document.createElement("h1");
-    $title.classList.add("modal-title")
+    const $title = document.createElement("h2");
+    $title.classList.add("modal-title");
 
     const content = `Contactez-moi ${this._photographer.name}`;
 

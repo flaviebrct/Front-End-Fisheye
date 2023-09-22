@@ -1,8 +1,14 @@
+// hide content from screen reader
+const photographerPage = document.querySelector("#photographer-page");
+
 // modal selector
-const modal = document.getElementById("contact_modal");
+const backgroundModal = document.querySelector(".background-modal");
+const modal = document.querySelector("#contact_modal");
 
 function displayModal() {
   modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", "false");
+  photographerPage.setAttribute("aria-hidden", "true");
 }
 
 // close modal button selector and listener
@@ -11,6 +17,33 @@ closeModalBtn.addEventListener("click", closeModal);
 
 function closeModal() {
   modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
+  photographerPage.setAttribute("aria-hidden", "false");
+}
+
+// close modal when clicking outside it
+backgroundModal.addEventListener("click", closeModal);
+
+modal.addEventListener("keydown", handleFocus);
+
+// handle focus inside modal
+function handleFocus(event) {
+  if (event.key === "Tab") {
+    console.log("Tab");
+    const focusableElements = modal.querySelectorAll(".form-input");
+    const firstFocusable = focusableElements[0];
+    const lastFocusable = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === firstFocusable) {
+      // Shift + Tab from the first element
+      event.preventDefault();
+      lastFocusable.focus();
+    } else if (!event.shiftKey && document.activeElement === lastFocusable) {
+      // Tab from the last element
+      event.preventDefault();
+      firstFocusable.focus();
+    }
+  }
 }
 
 // sending form button
@@ -37,43 +70,31 @@ contactBtn.addEventListener("click", (e) => {
   // display error message if the name input is empty
   if (userName.length < 2 || userName === " ") {
     userNameError.style.display = "block";
-    userSurnameError.style.display = "none";
-    userEmailError.style.display = "none";
-    userMessageError.style.display = "none";
   }
   // display error message if the surnamename input is empty
   else if (userSurname.length < 2 || userSurname === " ") {
-    userNameError.style.display = "none";
     userSurnameError.style.display = "block";
-    userEmailError.style.display = "none";
-    userMessageError.style.display = "none";
   }
   // display error message if the email input is empty
   else if (!userEmail.match(regexEmail)) {
-    userNameError.style.display = "none";
-    userSurnameError.style.display = "none";
     userEmailError.style.display = "block";
-    userMessageError.style.display = "none";
   }
   // display error message if the message input value is empty
   else if (userMessage.length < 2 || userMessage === " ") {
-    userNameError.style.display = "none";
-    userSurnameError.style.display = "none";
-    userEmailError.style.display = "none";
     userMessageError.style.display = "block";
   }
   // If all inputs are valid then the datas are logged
   else {
     const userDatas = {
-      Prénom : userName, 
-      Nom : userSurname, 
-      Email : userEmail, 
-      Message : userMessage
-    }
+      Prénom: userName,
+      Nom: userSurname,
+      Email: userEmail,
+      Message: userMessage,
+    };
     console.log(userDatas);
 
-    const form = document.querySelector("form")
-    form.reset()
+    const form = document.querySelector("form");
+    form.reset();
     modal.style.display = "none";
   }
 });

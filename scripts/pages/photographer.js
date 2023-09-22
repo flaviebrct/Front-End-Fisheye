@@ -50,6 +50,7 @@ class App {
         this.$mediaSection.appendChild(mediaTemplate.render());
       });
 
+    // Get photographer name in modale
     const contactFormTitleTemplate = new ContactFormTitle(filteredPhotographer);
     this.$modalHeader.appendChild(contactFormTitleTemplate.render());
 
