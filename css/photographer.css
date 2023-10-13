@@ -92,8 +92,19 @@
   cursor: default;
 }
 
-.media-card .media-info .media-title.like {
+.media-card .media-info .like-button {
   cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: var(--primary-color);
+}
+
+.media-card .media-info .like-button.liked .fa-heart{
+  font-weight: 700;
+}
+
+.media-card .media-info .like-button .fa-heart{
+  font-size: 18px;
 }
 
 /* Modale */
@@ -203,12 +214,23 @@ form .contact_button {
   border-radius: 5px 5px 0 0;
   position: fixed;
   bottom: 0px;
-  right: 36px;
+  right: 10%;
   font-size: calc(24rem / 16);
 }
 
 .toast-container p {
   margin: 0px;
+}
+
+.toast-container .total-likes-container{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.likes-container {
+  display: flex;
 }
 
 /* lightbox */

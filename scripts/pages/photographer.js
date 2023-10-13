@@ -8,6 +8,7 @@ import { Gallery } from "../templates/MediasGallery.js";
 import { ContactFormTitle } from "../templates/ContactFormTitle.js";
 import { PhotographerHeader } from "../templates/PhotographerHeader.js";
 import { displayLightbox } from "../utils/lightbox.js";
+import { displayTotalLikes } from "../utils/likes.js";
 
 class App {
   constructor() {
@@ -52,15 +53,17 @@ class App {
         const mediaTemplate = new Gallery(media);
         this.$mediaSection.appendChild(mediaTemplate.render());
       });
-    displayLightbox(filteredMedia);
+      
+      // Get photographer name in modale
+      const contactFormTitleTemplate = new ContactFormTitle(filteredPhotographer);
+      this.$modalHeader.appendChild(contactFormTitleTemplate.render());
+      
+      // Toast with likes and daily price
+      const toastTemplate = new Toast(filteredPhotographer);
+      this.$photographersWrapper.appendChild(toastTemplate.render());
 
-    // Get photographer name in modale
-    const contactFormTitleTemplate = new ContactFormTitle(filteredPhotographer);
-    this.$modalHeader.appendChild(contactFormTitleTemplate.render());
-
-    // Toast with likes and daily price
-    const toastTemplate = new Toast(filteredPhotographer);
-    this.$photographersWrapper.appendChild(toastTemplate.render());
+      displayLightbox(filteredMedia);
+      displayTotalLikes(filteredMedia);
   }
 }
 

@@ -8,7 +8,10 @@ export class Toast {
     $container.classList.add("toast-container");
 
     const toast = `
-        <p>${this._photographer.likes} <i class="fa-solid fa-heart"></i> </p>
+        <div class="total-likes-container">
+          <p class="photographer-total-like"></p>
+          <i class="fa-solid fa-heart"></i> 
+        </div>
         <p>${this._photographer.price}€/ jour</p>
     `;
 

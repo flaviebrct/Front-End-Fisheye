@@ -6,7 +6,6 @@ export class Gallery {
     this._media = media;
   }
   render() {
-    console.log(this._media);
     const $card = document.createElement("div");
     $card.classList.add("media-card");
     const $cardLink = document.createElement("a");
@@ -22,13 +21,23 @@ export class Gallery {
     $title.classList.add("media-title");
     $title.innerHTML = this._media.title;
 
-    const $likes = document.createElement("p");
-    $likes.classList.add("media-title");
-    $likes.classList.add("like");
-    $likes.innerHTML = `${this._media.likes} <i class="fa-regular fa-heart like-button"></i>`;
+    const $likesNumber = document.createElement("span");
+    $likesNumber.classList.add("media-title");
+    $likesNumber.classList.add("like");
+    $likesNumber.innerHTML = `${this._media.likes}`;
+
+    const $likeButton = document.createElement("button");
+    $likeButton.classList.add("like-button");
+    $likeButton.dataset.id = this._media.id
+    $likeButton.innerHTML = `<i class="fa-regular fa-heart"></i>`;
+
+    const $likesContainer = document.createElement("div");
+    $likesContainer.classList.add("likes-container");
+    $likesContainer.appendChild($likesNumber);
+    $likesContainer.appendChild($likeButton);
 
     $mediaInfo.appendChild($title);
-    $mediaInfo.appendChild($likes);
+    $mediaInfo.appendChild($likesContainer);
 
     $cardLink.appendChild($media);
 
