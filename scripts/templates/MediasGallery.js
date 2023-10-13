@@ -1,15 +1,19 @@
 import { MediaFactory } from "../factories/TemplateFactory.js";
+import { displayLightbox } from "../utils/lightbox.js";
 
 export class Gallery {
   constructor(media) {
     this._media = media;
   }
-
   render() {
+    console.log(this._media);
     const $card = document.createElement("div");
     $card.classList.add("media-card");
+    const $cardLink = document.createElement("a");
+    $cardLink.href = "#";
+    $cardLink.dataset.id = this._media.id;
 
-    const $media = new MediaFactory(this._media).createMediaComponent();
+    const $media = new MediaFactory(this._media, false).createMediaComponent();
 
     const $mediaInfo = document.createElement("div");
     $mediaInfo.classList.add("media-info");
@@ -20,12 +24,15 @@ export class Gallery {
 
     const $likes = document.createElement("p");
     $likes.classList.add("media-title");
-    $likes.innerHTML = `${this._media.likes} <i class="fa-solid fa-heart"></i>`;
+    $likes.classList.add("like");
+    $likes.innerHTML = `${this._media.likes} <i class="fa-regular fa-heart like-button"></i>`;
 
     $mediaInfo.appendChild($title);
     $mediaInfo.appendChild($likes);
 
-    $card.appendChild($media);
+    $cardLink.appendChild($media);
+
+    $card.appendChild($cardLink);
     $card.appendChild($mediaInfo);
 
     return $card;

@@ -73,7 +73,9 @@
   width: 350px;
   height: 300px;
   object-fit: cover;
+  object-position: 50% 20%;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .media-card .media-info {
@@ -82,11 +84,16 @@
   margin-top: 8px;
 }
 
-.media-card .media-title {
+.media-card .media-info .media-title {
   color: var(--primary-color);
   font-size: calc(20rem / 16);
   font-weight: 400;
   margin: 0;
+  cursor: default;
+}
+
+.media-card .media-info .media-title.like {
+  cursor: pointer;
 }
 
 /* Modale */
@@ -202,4 +209,67 @@ form .contact_button {
 
 .toast-container p {
   margin: 0px;
+}
+
+/* lightbox */
+#lightbox_modal {
+  display: none;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#lightbox_modal .closing-button {
+  cursor: pointer;
+  position: fixed;
+  top: 58px;
+  right: 112px;
+  border: none;
+  background-color: transparent;
+}
+
+#lightbox_modal .arrow {
+  cursor: pointer;
+  position: absolute;
+  border: none;
+  background-color: transparent;
+}
+
+#lightbox_modal .arrow.right {
+  right: 100px;
+}
+
+#lightbox_modal .arrow.left {
+  transform: rotate(180deg);
+  left: 100px;
+}
+
+#lightbox_modal .media-container {
+  height: 100%;
+  padding: 56px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#lightbox_modal .media-container .lightbox-media {
+  max-width: 1050px;
+  max-height: 100%;
+  border-radius: 5px;
+  box-shadow: 4px 0px 5px 0px #C4C4C4;
+  object-fit: cover;
+}
+
+#lightbox_modal .media-title {
+  color: var(--primary-color);
+  font-weight: 400;
+  font-size: calc(24rem /16);
+  margin: 5px 0px 14px;
+  text-align: left;
 }

@@ -3,8 +3,7 @@ import { Media } from "../models/MediaConstructor.js";
 export class MediaFactory {
   data = Media;
 
-  constructor(data) {
-
+  constructor(data, mediaWithCrontrols) {
     const { mediaType: type, title, mediaLink: url } = data;
 
     try {
@@ -15,6 +14,7 @@ export class MediaFactory {
 
         case "video":
           this.media = document.createElement("video");
+          this.media.controls = mediaWithCrontrols;
           break;
         default:
           throw new Error("Le type saisie n'existe pas");

@@ -1,4 +1,3 @@
-// hide content from screen reader
 const photographerPage = document.querySelector("#photographer-page");
 
 // modal selector

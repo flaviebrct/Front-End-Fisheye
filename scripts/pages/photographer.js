@@ -1,13 +1,17 @@
 import { Api } from "../api/api.js";
-import { PhotographerHeader } from "../templates/PhotographerHeader.js";
-import { Gallery } from "../templates/MediasGallery.js";
-import { Toast } from "../templates/Toast.js";
-import { ContactFormTitle } from "../templates/ContactFormTitle.js";
-import { Photographer as PhotographerConstructor } from "../models/PhotographerConstructor.js";
+
 import { Media as MediaConstructor } from "../models/MediaConstructor.js";
+import { Photographer as PhotographerConstructor } from "../models/PhotographerConstructor.js";
+
+import { Toast } from "../templates/Toast.js";
+import { Gallery } from "../templates/MediasGallery.js";
+import { ContactFormTitle } from "../templates/ContactFormTitle.js";
+import { PhotographerHeader } from "../templates/PhotographerHeader.js";
+import { displayLightbox } from "../utils/lightbox.js";
 
 class App {
   constructor() {
+    this.$photograperPage = document.querySelector("#photographer-page");
     this.$photographersWrapper = document.querySelector("#main");
     this.api = new Api("data/photographers.json");
     this.$mediaSection = document.createElement("section");
@@ -45,10 +49,10 @@ class App {
     filteredMedia
       .map((media) => new MediaConstructor(media))
       .forEach((media) => {
-        console.log(media);
         const mediaTemplate = new Gallery(media);
         this.$mediaSection.appendChild(mediaTemplate.render());
       });
+    displayLightbox(filteredMedia);
 
     // Get photographer name in modale
     const contactFormTitleTemplate = new ContactFormTitle(filteredPhotographer);

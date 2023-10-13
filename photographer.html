@@ -24,7 +24,7 @@
     <div class="background-modal"></div>
     <div class="modal">
       <header id="modal-header">
-        <button id="close-button" class="form-input" >
+        <button id="close-button" class="form-input">
           <img src="assets/icons/close.svg" alt="Bouton de fermeture de la modale" />
         </button>
       </header>
@@ -51,6 +51,18 @@
       </form>
     </div>
   </div>
+  <section id="lightbox_modal" role="dialog" aria-label="image closeup view" tabindex="0">
+    <button class="closing-button">
+      <img src="../assets/icons/close-red.svg" alt="Bouton de fermeture de la lightbox">
+    </button>
+    <button class="arrow right next-button">
+      <img src="../assets/icons/arrow.svg" alt="Bouton permettant d'afficher la photo suivante">
+    </button>
+    <button class="arrow left previous-button">
+      <img src="../assets/icons/arrow.svg" alt="Bouton permettant d'afficher la photo précédente">
+    </button>
+    <figure class="media-container" role="media" aria-label="Current Media"></figure>
+  </section>
 
   <!-- Entry point -->
   <script type="module" src="/scripts/pages/photographer.js"></script>
