@@ -9,6 +9,7 @@ import { ContactFormTitle } from "../templates/ContactFormTitle.js";
 import { PhotographerHeader } from "../templates/PhotographerHeader.js";
 import { displayLightbox } from "../utils/lightbox.js";
 import { displayTotalLikes } from "../utils/likes.js";
+import { DropDown, sortMedia } from "../utils/filter.js";
 
 class App {
   constructor() {
@@ -27,18 +28,18 @@ class App {
     let id = parseInt(params.get("id"));
 
     // Get photographer data
-    const filteredPhotographer = photographersData.filter(
+    const photographer = photographersData.filter(
       (proprety) => proprety.id === id
     )[0];
-    const photographerConstructor = new PhotographerConstructor(
-      filteredPhotographer
-    );
+    const photographerConstructor = new PhotographerConstructor(photographer);
     const photographerHeaderTemplate = new PhotographerHeader(
       photographerConstructor
     );
     const $header = document.querySelector(".photograph-header");
     $header.innerHTML = photographerHeaderTemplate.render();
     this.$photographersWrapper.appendChild($header);
+
+    DropDown();
 
     // Get photographer medias
     this.$mediaSection.classList.add("media-display-section");
@@ -47,23 +48,34 @@ class App {
     const filteredMedia = mediasData.filter(
       (proprety) => proprety.photographerId === id
     );
+
+    // let dropdown = document.querySelector("#sorting-select");
+    // let filter = "Popularité";
+
+    // dropdown.addEventListener("change", (event) => {
+    //   return (filter = event.target.value);
+    // });
+
+    // let sortedMedias = sortMedia(filteredMedia, filter);
+
     filteredMedia
       .map((media) => new MediaConstructor(media))
       .forEach((media) => {
         const mediaTemplate = new Gallery(media);
         this.$mediaSection.appendChild(mediaTemplate.render());
       });
-      
-      // Get photographer name in modale
-      const contactFormTitleTemplate = new ContactFormTitle(filteredPhotographer);
-      this.$modalHeader.appendChild(contactFormTitleTemplate.render());
-      
-      // Toast with likes and daily price
-      const toastTemplate = new Toast(filteredPhotographer);
-      this.$photographersWrapper.appendChild(toastTemplate.render());
+    // console.log(sortedMedias);
 
-      displayLightbox(filteredMedia);
-      displayTotalLikes(filteredMedia);
+    // Get photographer name in modale
+    const contactFormTitleTemplate = new ContactFormTitle(photographer);
+    this.$modalHeader.appendChild(contactFormTitleTemplate.render());
+
+    // Toast with likes and daily price
+    const toastTemplate = new Toast(photographer);
+    this.$photographersWrapper.appendChild(toastTemplate.render());
+
+    displayLightbox(filteredMedia);
+    displayTotalLikes(filteredMedia);
   }
 }
 

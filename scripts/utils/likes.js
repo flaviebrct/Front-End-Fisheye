@@ -9,8 +9,6 @@ export const displayTotalLikes = (data) => {
 
   updateTotalLikes();
 
-  console.log(likesButtons);
-
   likesButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const media = data.find((media) => media.id == button.dataset.id);

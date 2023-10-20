@@ -77,10 +77,3 @@ export const displayLightbox = (data) => {
   previousBtn.addEventListener("click", previous);
 };
 
-// console.log(mediaCards);
-
-// mediaCards.forEach((card) => {
-//   card.addEventListener("click", console.log(card));
-// });
-
-// export { displayLightbox };
