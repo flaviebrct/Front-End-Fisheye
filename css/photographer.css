@@ -107,7 +107,6 @@
   filter: invert(100%) sepia(2%) saturate(0%) hue-rotate(178deg) brightness(200%) contrast(200%);
   width: 32px;
   transform: rotate(90deg);
-  
 }
 
 .dropdown .dropdown-toggle .arrow.open{
@@ -128,6 +127,7 @@
   position: absolute;
   top: 0;
   width: 170px ;
+  z-index: 10;
 }
 
 .dropdown .dropdown-list .listbox-item:first-of-type {

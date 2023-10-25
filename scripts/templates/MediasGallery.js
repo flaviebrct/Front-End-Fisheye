@@ -11,6 +11,7 @@ export class Gallery {
     const $cardLink = document.createElement("a");
     $cardLink.href = "#";
     $cardLink.dataset.id = this._media.id;
+    $cardLink.setAttribute("aria-label", "Overture de la lightbox")
 
     const $media = new MediaFactory(this._media, false).createMediaComponent();
 
@@ -28,6 +29,7 @@ export class Gallery {
 
     const $likeButton = document.createElement("button");
     $likeButton.classList.add("like-button");
+    $likeButton.setAttribute("aria-label", "Like")
     $likeButton.dataset.id = this._media.id
     $likeButton.innerHTML = `<i class="fa-regular fa-heart"></i>`;
 

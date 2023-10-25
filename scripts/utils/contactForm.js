@@ -47,6 +47,7 @@ function handleFocus(event) {
 
 // sending form button
 const contactBtn = document.querySelector(".contact_button");
+contactBtn.focus();
 
 // form verification and log datas
 contactBtn.addEventListener("click", (e) => {
