@@ -9,11 +9,10 @@ export const updateLike = (data) => {
   }
 
   updateTotalLikes();
-
   // Updates the likes of a specific media by clicking on the heart button
   likesButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const media = data.find((media) => media.id === button.dataset.id);
+      const media = data.find((element) => element.id === parseInt(button.dataset.id));
 
       // ternary condition to unlike the image if the user had already liked it
       !button.classList.contains("liked") ? media.likes++ : media.likes--;
