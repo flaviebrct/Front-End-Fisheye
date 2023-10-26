@@ -7,9 +7,9 @@ export class PhotographerHeader {
   render() {
     const photographerHeader = `
       <div class="photographer-profile">
-        <h1>${this._photographer.name}</h1>
-        <p class="photographer-location">${this._photographer.city}, ${this._photographer.country}</p>
-        <p class="photographer-tagline">${this._photographer.tagline}</p>
+        <h1 aria-label="Nom et prénom du photographe séléctionné">${this._photographer.name}</h1>
+        <p class="photographer-location" aria-label="Localisation du photographe séléctionné">${this._photographer.city}, ${this._photographer.country}</p>
+        <p class="photographer-tagline" aria-label="Slogan du photographe séléctionné">${this._photographer.tagline}</p>
       </div>
       <button aria-label="Permet l'ouverture du formulaire de contact" class="contact_button" onclick="displayModal()">
         Contactez-moi

@@ -11,7 +11,7 @@ export class Gallery {
     const $cardLink = document.createElement("a");
     $cardLink.href = "#";
     $cardLink.dataset.id = this._media.id;
-    $cardLink.setAttribute("aria-label", "Overture de la lightbox")
+    $cardLink.setAttribute("aria-label", "Overture de la lightbox afin d'afficher le média en plein ecrant")
 
     // Use the media factory to format the media with the necessary tag, video or image
     const $media = new MediaFactory(this._media, false).createMediaComponent();
@@ -22,7 +22,9 @@ export class Gallery {
     // Create a paragraph who contain the name of the media
     const $title = document.createElement("p");
     $title.classList.add("media-title");
+    $title.setAttribute("aria-label", "Titre donnée au média")
     $title.innerHTML = this._media.title;
+
 
     const $likesContainer = document.createElement("div");
     $likesContainer.classList.add("likes-container");
@@ -31,12 +33,13 @@ export class Gallery {
     const $likesNumber = document.createElement("span");
     $likesNumber.classList.add("media-title");
     $likesNumber.classList.add("like");
+    $likesNumber.setAttribute("aria-label", "Nombre de likes qu'a reçu le média")
     $likesNumber.innerHTML = `${this._media.likes}`;
 
     // Create a button to allow the user of liking the image
     const $likeButton = document.createElement("button");
     $likeButton.classList.add("like-button");
-    $likeButton.setAttribute("aria-label", "Like")
+    $likeButton.setAttribute("aria-label", "Bouton permettant de liker l'image")
     $likeButton.dataset.id = this._media.id
     $likeButton.innerHTML = `<i class="fa-regular fa-heart"></i>`;
 
