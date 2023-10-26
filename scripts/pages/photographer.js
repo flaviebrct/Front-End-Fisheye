@@ -7,9 +7,10 @@ import { Toast } from "../templates/Toast.js";
 import { Gallery } from "../templates/MediasGallery.js";
 import { ContactFormTitle } from "../templates/ContactFormTitle.js";
 import { PhotographerHeader } from "../templates/PhotographerHeader.js";
-import { displayLightbox } from "../utils/lightbox.js";
-import { displayTotalLikes } from "../utils/likes.js";
+
 import { DropDown } from "../utils/filter.js";
+import { updateLike } from "../utils/likes.js";
+import { displayLightbox } from "../utils/lightbox.js";
 
 class App {
   constructor() {
@@ -43,10 +44,12 @@ class App {
     this.$mediaSection.classList.add("media-display-section");
     this.$photographersWrapper.appendChild(this.$mediaSection);
 
+    // Filter data to get only the selected photographer's ones
     const filteredMedia = mediasData.filter(
       (proprety) => proprety.photographerId === id
     );
 
+    // Display each of the photographer media
     function displayMedia(data, parent) {
       data
         .map((media) => new MediaConstructor(media))
@@ -55,9 +58,9 @@ class App {
           parent.appendChild(mediaTemplate.render());
         });
     }
-    console.log(filteredMedia);
     displayMedia(filteredMedia, this.$mediaSection);
 
+    // Display the dropdown who contain the filters
     DropDown();
 
     // Get photographer name in modale
@@ -68,13 +71,15 @@ class App {
     const toastTemplate = new Toast(photographer);
     this.$photographersWrapper.appendChild(toastTemplate.render());
 
-    displayLightbox(filteredMedia);
-    displayTotalLikes(filteredMedia);
+    // Display and update number of likes in the toast when medias are liked
+    updateLike(filteredMedia);
 
-    const filters = Array.from(document.getElementsByClassName("listbox-item"));
+    // Display the lightbox who allow the user to see and navigate through the medias
+    displayLightbox(filteredMedia);
 
     let sortedMedias = [];
 
+    // updates the media display by sorting it by nomber of like
     function sortByPopularity(parent) {
       sortedMedias = filteredMedia.sort((a, b) => b.likes - a.likes);
       document.querySelector(".media-display-section").innerHTML = "";
@@ -84,8 +89,8 @@ class App {
       displayTotalLikes(sortedMedias);
     }
 
+    // updates the media display by sorting it by date of publication
     function sortByDate(parent) {
-      //sort by date
       sortedMedias = filteredMedia.sort(
         (a, b) => new Date(a.date).valueOf() - new Date(b.date).valueOf()
       );
@@ -96,6 +101,7 @@ class App {
       displayTotalLikes(sortedMedias);
     }
 
+    // updates the media display by sorting it by alphabetical order
     function sortByTitle(parent) {
       sortedMedias = filteredMedia.sort((a, b) => {
         if (a.title.toLowerCase() < b.title.toLowerCase()) {
@@ -111,10 +117,13 @@ class App {
       displayTotalLikes(sortedMedias);
     }
 
-    filters.forEach(
-      (element, index) => {
-        element.addEventListener("click", () => {
-          if (index == 0) {
+    const allFilters = Array.from(document.getElementsByClassName("listbox-item"));
+
+    // sorts media by selecting a filter with a click 
+    allFilters.forEach(
+      (filter, index) => {
+        filter.addEventListener("click", () => {
+          if (index === 0) {
             sortByPopularity(this.$mediaSection);
           } else if (index === 1) {
             sortByDate(this.$mediaSection);
@@ -122,10 +131,11 @@ class App {
             sortByTitle(this.$mediaSection);
           }
         }),
-          element.addEventListener("keyup", (e) => {
+        // or sorts media by keyboard navigation
+        filter.addEventListener("keyup", (e) => {
             switch (e.key) {
               case "Enter":
-                if (index == 0) {
+                if (index === 0) {
                   sortByPopularity(this.$mediaSection);
                 } else if (index === 1) {
                   sortByDate(this.$mediaSection);
@@ -135,16 +145,6 @@ class App {
             }
           });
       }
-      //   element.addEventListener("keyup", (e) => {
-      //     switch (e.key) {
-      //       case "Enter":
-      //         openDropDown();
-      //         break;
-      //       case "Escape":
-      //         closeDropDown();
-      //         break;
-      //     }
-      //   });
     );
   }
 }

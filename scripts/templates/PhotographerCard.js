@@ -3,6 +3,7 @@ export class PhotographerCard {
     this._photographer = photographer;
   }
 
+  // Render the photographer card template with data
   render() {
     const $article = document.createElement("article");
     $article.classList.add("photographer-card-wrapper");

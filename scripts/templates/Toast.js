@@ -3,6 +3,7 @@ export class Toast {
     this._photographer = photographer;
   }
 
+  // Render the toast with the total of likes and the daily price of the photographer
   render() {
     const $container = document.createElement("div");
     $container.classList.add("toast-container");

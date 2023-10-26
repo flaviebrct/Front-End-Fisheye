@@ -13,14 +13,10 @@ class App {
   async init() {
     const photographersData = await this.photographersApi.getPhotographers();
 
-    // console.log(photographersData);
-    
-    console.log(photographersData);
     photographersData
-      .map((photographer) => new PhotographerConstructor(photographer))
+      .map((photographer) => new PhotographerConstructor(photographer)) //format photographer data
       .forEach((photographer) => {
-        const template = new PhotographerCard(photographer);
-        console.log(template.render());
+        const template = new PhotographerCard(photographer); //render card template
         this.$photographersWrapper.appendChild(template.render());
       });
   }

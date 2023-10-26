@@ -1,6 +1,6 @@
 const photographerPage = document.querySelector("#photographer-page");
 
-// modal selector
+// Modal selector
 const backgroundModal = document.querySelector(".background-modal");
 const modal = document.querySelector("#contact_modal");
 
@@ -10,7 +10,7 @@ function displayModal() {
   photographerPage.setAttribute("aria-hidden", "true");
 }
 
-// close modal button selector and listener
+// Close modal button selector and listener
 const closeModalBtn = document.querySelector("#close-button");
 closeModalBtn.addEventListener("click", closeModal);
 
@@ -20,7 +20,7 @@ function closeModal() {
   photographerPage.setAttribute("aria-hidden", "false");
 }
 
-// close modal when clicking outside it
+// Close modal when clicking outside it
 backgroundModal.addEventListener("click", closeModal);
 
 modal.addEventListener("keydown", handleFocus);
@@ -28,7 +28,6 @@ modal.addEventListener("keydown", handleFocus);
 // handle focus inside modal
 function handleFocus(event) {
   if (event.key === "Tab") {
-    console.log("Tab");
     const focusableElements = modal.querySelectorAll(".form-input");
     const firstFocusable = focusableElements[0];
     const lastFocusable = focusableElements[focusableElements.length - 1];

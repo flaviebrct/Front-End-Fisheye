@@ -1,8 +1,9 @@
 export function DropDown() {
-  const options = ["Popularité", "Date", "Titre"];
+  const filters = ["Popularité", "Date", "Titre"];
 
   const filterContainer = document.querySelector(".filter-container");
 
+  // Create the dropdown
   const label = document.createElement("p");
   label.setAttribute("id", "dropdown-label");
   label.setAttribute("role", "label");
@@ -34,7 +35,8 @@ export function DropDown() {
   dropdownList.setAttribute("aria-expanded", "false");
   dropdownList.classList.add("dropdown-list", "hidden");
 
-  options.forEach((value) => {
+  // Using a loop to create all the filters list items
+  filters.forEach((value) => {
     const listItem = document.createElement("li");
     listItem.setAttribute("role", "option");
     listItem.setAttribute("tabindex", "0");
@@ -64,21 +66,24 @@ export function DropDown() {
   const dropdownButton = document.querySelector(".dropdown-toggle");
   const hidenPart = document.querySelector(".dropdown-list");
 
+  // Function to open the dropdown
   function openDropDown() {
     hidenPart.classList.remove("hidden");
     hidenPart.setAttribute("aria-expanded", "true");
     dropdownButton.classList.toggle("open");
   }
 
+  // Function to close the dropdown
   function closeDropDown() {
     hidenPart.classList.add("hidden");
     hidenPart.setAttribute("aria-expanded", "false");
     dropdownButton.classList.toggle("open");
   }
 
-  // Écouteurs d'évenement qui permetent de dérouler le drop down
+  // Event listener that open the dropdown by clicking
   dropdownButton.addEventListener("click", openDropDown);
 
+  // Event listener that open the dropdown with keybord navigation
   dropdownButton.addEventListener("keyup", (e) => {
     switch (e.key) {
       case "Enter":
@@ -87,19 +92,10 @@ export function DropDown() {
     }
   });
 
-  dropdownButton.addEventListener("click", openDropDown);
-
-  dropdownButton.addEventListener("keyup", (e) => {
-    switch (e.key) {
-      case "Enter":
-        openDropDown();
-        break;
-    }
-  });
-
-  // events listeners that close the dropdown
+  // Event listener that close the dropdown by clicking
   hidenPart.addEventListener("click", closeDropDown);
 
+  // Event listener that close the dropdown with keybord navigation
   hidenPart.addEventListener("keyup", (e) => {
     switch (e.key) {
       case "Escape":
@@ -108,22 +104,25 @@ export function DropDown() {
     }
   });
 
-  const filters = Array.from(document.getElementsByClassName("listbox-item"));
-  filters.forEach((element, index) => {
+  const allFilters = Array.from(
+    document.getElementsByClassName("listbox-item")
+  );
+  allFilters.forEach((element) => {
+    // Event listener that update the dropdown value with the selected filter by clicking
     element.addEventListener("click", () => {
       const elementValue = element.getAttribute("data-value");
       button.innerHTML = `${elementValue}`;
       button.appendChild(arrow);
-      console.log(elementValue);
     }),
+      // Event listener that update the dropdown value with the selected filter with keybord navigation
       element.addEventListener("keyup", (e) => {
         switch (e.key) {
-          case "Enter":
+          case "Enter": {
             const elementValue = element.getAttribute("data-value");
             button.innerHTML = `${elementValue}`;
             button.appendChild(arrow);
-            console.log(elementValue);
             break;
+          }
         }
       });
   });

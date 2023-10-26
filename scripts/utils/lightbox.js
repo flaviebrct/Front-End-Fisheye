@@ -10,22 +10,24 @@ export const displayLightbox = (data) => {
 
   let currentIndex = 0;
 
+  // Display the selected media in the lightbox
   mediaCards.forEach((media) => {
     media.addEventListener("click", () => {
       const mediaId = media.dataset.id;
+      // looking for the index of the media which has an identical id to the media which is listening to the event
       const mediaIndex = data.findIndex((media) => media.id == mediaId);
       currentIndex = mediaIndex;
       lightboxWrapper.style.display = "flex";
       lightboxWrapper.setAttribute("aria-hidden", "false");
       photographerPage.setAttribute("aria-hidden", "true");
       closingBtn.focus();
+      // Rendering the lightbox template 
       lightboxTemplate();
     });
   });
 
   const lightboxTemplate = () => {
     const currentMedia = data[currentIndex];
-
     lightboxMedia.innerHTML = `
     ${
       currentMedia.image
@@ -35,6 +37,7 @@ export const displayLightbox = (data) => {
     <figcaption class="media-title">${currentMedia.title}</figcaption>`;
   };
 
+  // Function to close the lightbox
   function closeLightbox() {
     lightboxWrapper.style.display = "none";
     lightboxWrapper.setAttribute("aria-hidden", "true");
@@ -42,6 +45,7 @@ export const displayLightbox = (data) => {
     lightboxMedia.innerHTML = ``;
   }
 
+  // Display next media
   function next() {
     currentIndex++;
     if (currentIndex > data.length - 1) {
@@ -50,6 +54,7 @@ export const displayLightbox = (data) => {
     lightboxTemplate();
   }
 
+  // Display previous media
   function previous() {
     currentIndex--;
     if (currentIndex < 0) {
@@ -58,6 +63,7 @@ export const displayLightbox = (data) => {
     lightboxTemplate();
   }
 
+  // manages keyboard navigation
   document.addEventListener("keyup", (e) => {
     switch (e.key) {
       case "Escape":

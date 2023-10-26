@@ -3,6 +3,7 @@ export class PhotographerHeader {
     this._photographer = photographer;
   }
 
+  // Render the photographer header template with data
   render() {
     const photographerHeader = `
       <div class="photographer-profile">
